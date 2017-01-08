@@ -1,0 +1,56 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+repositories {
+    jcenter()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext {
+	logbackVersion = '1.1.8'
+	slf4jVersion = '1.7.22'
+	springVersion = '4.3.5.RELEASE'
+	thymeleafVersion = '3.0.3.RELEASE'
+	hikariCPVersion = '2.5.1'
+	springSecurityVersion = '4.2.1.RELEASE'
+}
+
+dependencies {
+	
+	compile "org.springframework:spring-webmvc:$springVersion"	
+	compile "org.springframework:spring-jdbc:$springVersion"	
+	
+	compile "org.thymeleaf:thymeleaf-spring4:$thymeleafVersion"
+	
+	// Logging
+	compile "ch.qos.logback:logback-classic:$logbackVersion"
+    compile "org.slf4j:jcl-over-slf4j:$slf4jVersion"
+    
+    
+    compile "com.zaxxer:HikariCP:$hikariCPVersion"
+    
+	compile "org.springframework.security:spring-security-config:$springSecurityVersion"
+	compile "org.springframework.security:spring-security-web:$springSecurityVersion"
+    
+    
+    // local libs
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+
+configurations.all {
+    exclude group: "org.slf4j", module: "slf4j-log4j12"
+    exclude group: "log4j", module: "log4j"
+    exclude group: "commons-logging", module: "ommons-logging"
+}
+
+eclipse {
+	wtp {
+		component {
+			contextPath = 'security'
+		}
+	}
+}

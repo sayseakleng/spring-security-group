@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Insert title here</title>
+</head>
+<body>
+	<p th:utext="'Hello ' + ${name}">Hello name</p>
+	<p th:text="'System Time: ' +${#dates.format(systemDateTime, 'dd-MMM-yyyy')}">
+	System Time: dd-MMM-yyyy
+	</p>
+</body>
+</html>
