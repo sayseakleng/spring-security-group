@@ -11,8 +11,12 @@
 		<intercept-url pattern="/login" access="isAnonymous()" />
 		<form-login login-page="/index" default-target-url="/" always-use-default-target="true"
 			authentication-failure-url="/index" username-parameter="j_username" password-parameter="j_password"/>
+		
 		<logout logout-success-url="/index" />
-		<remember-me key="application.key" remember-me-parameter="_spring_security_remember_me"/>
+		
+		<remember-me key="application.key" 
+			remember-me-parameter="_spring_security_remember_me" 
+			data-source-ref="dataSource"/>
 		<csrf/>
 	</http>
   

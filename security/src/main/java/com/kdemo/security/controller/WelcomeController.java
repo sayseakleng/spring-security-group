@@ -1,5 +1,6 @@
 package com.kdemo.security.controller;
 
+import java.security.Principal;
 import java.util.Date;
 
 import org.springframework.stereotype.Controller;
@@ -10,9 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class WelcomeController {
 	
 	@GetMapping("/")
-	public String getWelcomePage(Model model) {
+	public String getWelcomePage(Model model, Principal principal) {
 		
-		model.addAttribute("name", "Lan");
+		model.addAttribute("name", principal.getName());
 		model.addAttribute("systemDateTime", new Date());
 		
 		return "welcome";

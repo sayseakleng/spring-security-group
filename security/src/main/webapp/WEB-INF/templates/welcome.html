@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Insert title here</title>
+	<!-- For csrf Ajax and JSON Requests -->
+	<!-- https://docs.spring.io/spring-security/site/docs/current/reference/html/csrf.html#csrf-include-csrf-token-ajax -->
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+	<title>Welcome</title>
 </head>
 <body>
 	<p th:utext="'Hello ' + ${name}">Hello name</p>
-	<p th:text="'System Time: ' +${#dates.format(systemDateTime, 'dd-MMM-yyyy')}">
+	<p th:text="'System Time: ' + ${#dates.format(systemDateTime, 'dd-MMM-yyyy')}">
 	System Time: dd-MMM-yyyy
 	</p>
+	
+	<form method="post" th:action="@{/logout}" >
+		<input type="submit" value="Logout" />
+	</form>
+	
 </body>
 </html>
