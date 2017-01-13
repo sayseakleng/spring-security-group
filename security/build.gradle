@@ -38,13 +38,19 @@ dependencies {
     
     // local libs
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    
+    
+    compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
+    
+    testCompile 'junit:junit:4.12'
+    testCompile "org.springframework:spring-test:$springVersion"	
 }
 
 
 configurations.all {
     exclude group: "org.slf4j", module: "slf4j-log4j12"
     exclude group: "log4j", module: "log4j"
-    exclude group: "commons-logging", module: "ommons-logging"
+    exclude group: "commons-logging", module: "commons-logging"
 }
 
 eclipse {
